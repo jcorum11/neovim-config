@@ -239,5 +239,6 @@ let g:neoformat_try_node_exe = 1
 " autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 
 " TODO: things that I want
-"  - cmd click capability like vscode or equivalent
-"  - hover to see docs like vscode or equivalent
+"  - (done) cmd click capability like vscode or equivalent
+"  - (done) hover to see docs like vscode or equivalent
+"  - install formatter
