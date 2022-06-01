@@ -1,11 +1,13 @@
 
 :set number
 :set autoindent
+:set cindent 
 :set tabstop=2
 :set shiftwidth=2
 :set smarttab
 :set softtabstop=2
 :set mouse=a
+:set relativenumber
 
 " <----- START PLUGINS ----->
 call plug#begin()
@@ -232,6 +234,16 @@ nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
 nnoremap <silent> <Space>bw :BufferOrderByWindowNumber<CR>
 " <----- END BARBAR SETTINGS ----->
 
+" <----- autoclose brackets ----->
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+" <----- end autoclose brackets ----->
+
 :set completeopt-=preview " For No Previews
 colorscheme onedark
 
@@ -242,3 +254,5 @@ let g:neoformat_try_node_exe = 1
 "  - (done) cmd click capability like vscode or equivalent
 "  - (done) hover to see docs like vscode or equivalent
 "  - install formatter
+"  - angular support for strings
+"  - (done) get bracket closing to work on js files 
