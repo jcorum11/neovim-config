@@ -256,3 +256,13 @@ let g:neoformat_try_node_exe = 1
 "  - install formatter
 "  - angular support for strings
 "  - (done) get bracket closing to work on js files 
+  
+" to make background transparent 
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" <----- START PRETTIER CONFIGURATION ----->
+" use :CocInstall coc-prettier for this to work
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+nnoremap <leader>pa :Prettier <CR>
+" <----- END PRETTIER CONFIGURATION ----->
