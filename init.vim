@@ -8,6 +8,7 @@
 :set softtabstop=2
 :set mouse=a
 :set relativenumber
+:set ic
 
 " <----- START PLUGINS ----->
 call plug#begin()
@@ -246,7 +247,6 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 :set completeopt-=preview " For No Previews
 colorscheme onedark
-
 let g:neoformat_try_node_exe = 1
 " autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 
