@@ -219,13 +219,13 @@ nnoremap <silent>    <leader>p :BufferPin<CR>
 " Close buffer
 nnoremap <silent>    <leader>c :BufferClose<CR>
 " Wipeout buffer
-"                          :BufferWipeout<CR>
+nnoremap <silent>    <leader>qa :BufferWipeout<CR>
 " Close commands
-"                          :BufferCloseAllButCurrent<CR>
-"                          :BufferCloseAllButPinned<CR>
-"                          :BufferCloseAllButCurrentOrPinned<CR>
-"                          :BufferCloseBuffersLeft<CR>
-"                          :BufferCloseBuffersRight<CR>
+nnoremap <silent>    <leader>qo :BufferCloseAllButCurrent<CR>
+nnoremap <silent>    <leader>qnp :BufferCloseAllButPinned<CR>
+nnoremap <silent>    <leader>qonp :BufferCloseAllButCurrentOrPinned<CR>
+nnoremap <silent>    <leader>ql :BufferCloseBuffersLeft<CR>
+nnoremap <silent>    <leader>qr :BufferCloseBuffersRight<CR>
 " Magic buffer-picking mode
 nnoremap <silent> <C-s>    :BufferPick<CR>
 " Sort automatically by...
@@ -266,3 +266,7 @@ highlight NonText ctermbg=none
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 nnoremap <leader>pa :Prettier <CR>
 " <----- END PRETTIER CONFIGURATION ----->
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
