@@ -1,16 +1,27 @@
 " :lua require('main_module')
-:set number
-:set autoindent
-:set cindent 
-:set tabstop=2
-:set shiftwidth=2
-:set smarttab
-:set softtabstop=2
-:set mouse=a
-:set relativenumber
-:set ic
-:set foldmethod=expr
+set number
+set autoindent
+set cindent 
+set smarttab
+set mouse=a
+set relativenumber
+set ic
+set nocompatible            " disable compatibility to old-time vi
+set showmatch               " show matching 
+set ignorecase              " case insensitive 
+set incsearch               " incremental search
+set tabstop=2               " number of columns occupied by a tab 
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
+set expandtab               " converts tabs to white space
+set shiftwidth=2            " width for autoindents
+set clipboard=unnamedplus   " using system clipboard
+set cursorline              " highlight current cursorline
+set ttyfast                 " Speed up scrolling in Vim
+set noswapfile            " disable creating swap file
+set backupdir=~/.cache/vim " Directory to store backup files.
 " :set foldexpr=nvim_treesitter#foldexpr()
+" If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
 
 " <----- START PLUGINS ----->
 call plug#begin()
@@ -25,7 +36,9 @@ Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
@@ -195,10 +208,10 @@ let NERDTreeShowHidden=1
 
 " <----- START TELESCOPE SETTINGS ----->
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ff <cmd>Files<cr>
+nnoremap <leader>fw <cmd>Rg<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>pf <cmd>Neoformat prettier<cr>
 " <----- END TELESCOPE SETTINGS
 
@@ -251,7 +264,11 @@ inoremap {;<CR> {<CR>};<ESC>O
 " <----- end autoclose brackets ----->
 
 :set completeopt-=preview " For No Previews
-colorscheme onedark
+" if (has(“termguicolors”))
+"  set termguicolors
+"  endif
+" syntax enable
+colorscheme desert
 let g:neoformat_try_node_exe = 1
 " autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 
@@ -326,42 +343,40 @@ require'nvim-treesitter.configs'.setup {
 		-- }
   },
 }
-require('telescope').setup{
-  defaults = {
-    -- Default configuration for telescope goes here:
-    -- config_key = value,
-
-		-- Format path as "file.txt (path\to\file\)"
-    path_display = function(opts, path)
-      local tail = require("telescope.utils").path_tail(path)
-      return string.format("%s (%s)", tail, path)
-     end,
-
-		
-    mappings = {
-      i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key"
-      }
-    }
-  },
-  pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
-  },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  }
-}
+--require('telescope').setup{
+--  defaults = {
+--    -- Default configuration for telescope goes here:
+--    -- config_key = value,
+--
+--    path_display = function(opts, path)
+--			local tail = require("telescope.utils").path_tail(path)
+--      return string.format("%s (%s)", tail, path)
+--	  end,
+--		-- Format path as "file.txt (path\to\file\)"
+--    mappings = {
+--      i = {
+--        -- map actions.which_key to <C-h> (default: <C-/>)
+--        -- actions.which_key shows the mappings for your picker,
+--        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+--        ["<C-h>"] = "which_key"
+--      }
+--    }
+--  },
+--  pickers = {
+--    -- Default configuration for builtin pickers goes here:
+--    -- picker_name = {
+--    --   picker_config_key = value,
+--    --   ...
+--    -- }
+--    -- Now the picker_config_key will be applied every time you call this
+--    -- builtin picker
+--  },
+--  extensions = {
+--    -- Your extension configuration goes here:
+--    -- extension_name = {
+--    --   extension_config_key = value,
+--    -- }
+--    -- please take a look at the readme of the extension you want to configure
+--  }
+--}
 EOF
