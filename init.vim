@@ -10,7 +10,7 @@
 :set relativenumber
 :set ic
 :set foldmethod=expr
-:set foldexpr=nvim_treesitter#foldexpr()
+" :set foldexpr=nvim_treesitter#foldexpr()
 
 " <----- START PLUGINS ----->
 call plug#begin()
@@ -299,6 +299,7 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
+		disable = {'html'},
 
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
@@ -320,9 +321,47 @@ require'nvim-treesitter.configs'.setup {
 		-- 		node_decremental = "grm",
 		-- 	},
 		-- },
-		indent = {
-			enable = true
-		}
+		-- indent = {
+			-- enable = true
+		-- }
   },
+}
+require('telescope').setup{
+  defaults = {
+    -- Default configuration for telescope goes here:
+    -- config_key = value,
+
+		-- Format path as "file.txt (path\to\file\)"
+    path_display = function(opts, path)
+      local tail = require("telescope.utils").path_tail(path)
+      return string.format("%s (%s)", tail, path)
+     end,
+
+		
+    mappings = {
+      i = {
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key"
+      }
+    }
+  },
+  pickers = {
+    -- Default configuration for builtin pickers goes here:
+    -- picker_name = {
+    --   picker_config_key = value,
+    --   ...
+    -- }
+    -- Now the picker_config_key will be applied every time you call this
+    -- builtin picker
+  },
+  extensions = {
+    -- Your extension configuration goes here:
+    -- extension_name = {
+    --   extension_config_key = value,
+    -- }
+    -- please take a look at the readme of the extension you want to configure
+  }
 }
 EOF
