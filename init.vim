@@ -15,7 +15,7 @@ set softtabstop=2           " see multiple spaces as tabstops so <BS> does the r
 set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
 set clipboard=unnamedplus   " using system clipboard
-set cursorline              " highlight current cursorline
+" set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 set noswapfile            " disable creating swap file
 set backupdir=~/.cache/vim " Directory to store backup files.
@@ -47,6 +47,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --producti
 Plug 'kyazdani42/nvim-web-devicons' " for barbar) 
 Plug 'romgrk/barbar.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'https://github.com/tpope/vim-fugitive'
 set encoding=UTF-8
 call plug#end()
 " <----- END PLUGINS ----->
@@ -268,7 +269,7 @@ inoremap {;<CR> {<CR>};<ESC>O
 "  set termguicolors
 "  endif
 " syntax enable
-colorscheme desert
+colorscheme purify
 let g:neoformat_try_node_exe = 1
 " autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
 
