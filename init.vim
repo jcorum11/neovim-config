@@ -4,7 +4,11 @@ set autoindent
 set cindent 
 set smarttab
 set mouse=a
-set relativenumber
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END
 set ic
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
