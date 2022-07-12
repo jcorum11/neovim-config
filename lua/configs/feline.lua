@@ -43,3 +43,5 @@ feline.setup(astronvim.user_plugin_opts("plugins.feline", {
     },
   },
 }))
+
+feline.winbar.setup()
