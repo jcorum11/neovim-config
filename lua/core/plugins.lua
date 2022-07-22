@@ -167,12 +167,12 @@ local astro_plugins = {
     config = function() require "configs.telescope" end,
   },
 
-  -- Fuzzy finder syntax support
-  [("nvim-telescope/telescope-%s-native.nvim"):format(vim.fn.has "win32" == 1 and "fzy" or "fzf")] = {
-    after = "telescope.nvim",
-    run = vim.fn.has "win32" ~= 1 and "make" or nil,
-    config = function() require("telescope").load_extension(vim.fn.has "win32" == 1 and "fzy_native" or "fzf") end,
-  },
+  -- -- Fuzzy finder syntax support
+  -- [("nvim-telescope/telescope-%s-native.nvim"):format(vim.fn.has "win32" == 1 and "fzy" or "fzf")] = {
+  --   after = "telescope.nvim",
+  --   run = vim.fn.has "win32" ~= 1 and "make" or nil,
+  --   config = function() require("telescope").load_extension(vim.fn.has "win32" == 1 and "fzy_native" or "fzf") end,
+  -- },
 
   -- Git integration
   ["lewis6991/gitsigns.nvim"] = {
@@ -247,6 +247,20 @@ local astro_plugins = {
     event = "BufWritePost",
     config = function() require "configs.session_manager" end,
   },
+
+  ["xiyaowong/nvim-transparent"] = {},
+
+  ['ThePrimeagen/harpoon'] = {},
+
+  ['ggandor/lightspeed.nvim'] = {},
+
+  ['ibhagwan/fzf-lua'] = {
+    requires = 'kyazdani42/nvim-web-devicons'
+  },
+  
+  ['sbdchd/neoformat'] = {},
+
+  ['MunifTanjim/prettier.nvim'] = {}
 }
 
 if astronvim.updater.snapshot then

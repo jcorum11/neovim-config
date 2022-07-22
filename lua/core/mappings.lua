@@ -15,6 +15,7 @@ maps.n["gx"] = { function() astronvim.url_opener() end, desc = "Open the file un
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
 maps.n["Q"] = "<Nop>"
+maps.n["<leader>v"] = { "<cmd>vsplit<cr>", desc = "vsplit"}
 
 -- Packer
 maps.n["<leader>pc"] = { "<cmd>PackerCompile<cr>", desc = "Packer Compile" }
@@ -39,6 +40,7 @@ if is_available "bufferline.nvim" then
   maps.n["<S-h>"] = { "<cmd>BufferLineCyclePrev<cr>", desc = "Previous buffer tab" }
   maps.n[">b"] = { "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer tab right" }
   maps.n["<b"] = { "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer tab left" }
+  maps.n["bd"] = { "<cmd>BufferLineSortByDirectory<cr>", desc = "Sort buffer by directory"}
 else
   maps.n["<S-l>"] = { "<cmd>bnext<cr>", desc = "Next buffer" }
   maps.n["<S-h>"] = { "<cmd>bprevious<cr>", desc = "Previous buffer" }
@@ -91,10 +93,10 @@ end
 -- Smart Splits
 if is_available "smart-splits.nvim" then
   -- Better window navigation
-  maps.n["<C-h>"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
-  maps.n["<C-j>"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
-  maps.n["<C-k>"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
-  maps.n["<C-l>"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
+  maps.n["qh"] = { function() require("smart-splits").move_cursor_left() end, desc = "Move to left split" }
+  maps.n["qj"] = { function() require("smart-splits").move_cursor_down() end, desc = "Move to below split" }
+  maps.n["qk"] = { function() require("smart-splits").move_cursor_up() end, desc = "Move to above split" }
+  maps.n["ql"] = { function() require("smart-splits").move_cursor_right() end, desc = "Move to right split" }
 
   -- Resize with arrows
   maps.n["<C-Up>"] = { function() require("smart-splits").resize_up() end, desc = "Resize split up" }
@@ -102,10 +104,10 @@ if is_available "smart-splits.nvim" then
   maps.n["<C-Left>"] = { function() require("smart-splits").resize_left() end, desc = "Resize split left" }
   maps.n["<C-Right>"] = { function() require("smart-splits").resize_right() end, desc = "Resize split right" }
 else
-  maps.n["<C-h>"] = { "<C-w>h", desc = "Move to left split" }
-  maps.n["<C-j>"] = { "<C-w>j", desc = "Move to below split" }
-  maps.n["<C-k>"] = { "<C-w>k", desc = "Move to above split" }
-  maps.n["<C-l>"] = { "<C-w>l", desc = "Move to right split" }
+  maps.n["qh"] = { "<C-w>h", desc = "Move to left split" }
+  maps.n["qj"] = { "<C-w>j", desc = "Move to below split" }
+  maps.n["qk"] = { "<C-w>k", desc = "Move to above split" }
+  maps.n["ql>"] = { "<C-w>l", desc = "Move to right split" }
   maps.n["<C-Up>"] = { "<cmd>resize -2<CR>", desc = "Resize split up" }
   maps.n["<C-Down>"] = { "<cmd>resize +2<CR>", desc = "Resize split down" }
   maps.n["<C-Left>"] = { "<cmd>vertical resize -2<CR>", desc = "Resize split left" }
@@ -189,5 +191,57 @@ maps.t["<C-h>"] = { "<c-\\><c-n><c-w>h", desc = "Terminal left window navigation
 maps.t["<C-j>"] = { "<c-\\><c-n><c-w>j", desc = "Terminal down window navigation" }
 maps.t["<C-k>"] = { "<c-\\><c-n><c-w>k", desc = "Terminal up window navigation" }
 maps.t["<C-l>"] = { "<c-\\><c-n><c-w>l", desc = "Terminal right window naviation" }
+
+maps.n['zb'] = { function () require('fzf-lua').buffers() end, desc = 'fzf buffers' }
+maps.n['zp'] = { function () require('fzf-lua').files() end, desc = 'fzf files' }
+maps.n['zh'] = { function () require('fzf-lua').oldfiles() end, desc = 'fzf history' }
+maps.n['zq'] = { function () require('fzf-lua').quickfix() end, desc = 'fzf quickfix' }
+maps.n['zll'] = { function () require('fzf-lua').loclist() end, desc = 'fzf loclist' }
+maps.n['zl'] = { function () require('fzf-lua').loclist() end, desc = 'fzf lines' }
+maps.n['zt'] = { function () require('fzf-lua').tabs() end, desc = 'fzf tabs' }
+maps.n['za'] = { function () require('fzf-lua').args() end, desc = 'fzf args' }
+maps.n['zg'] = { function () require('fzf-lua').grep() end, desc = 'fzf grep' }
+maps.n['zgl'] = { function () require('fzf-lua').grep_last() end, desc = 'fzf grep_last' }
+maps.n['zcw'] = { function () require('fzf-lua').cword() end, desc = 'fzf cword' }
+maps.n['zcW'] = { function () require('fzf-lua').cWORD() end, desc = 'fzf cWORD' }
+maps.n['zCW'] = { function () require('fzf-lua').cWORD() end, desc = 'fzf cWORD' }
+maps.n['zgv'] = { function () require('fzf-lua').grep_visual() end, desc = 'fzf grep_visual' }
+maps.n['zgp'] = { function () require('fzf-lua').grep_project() end, desc = 'fzf grep_project' }
+maps.n['zcb'] = { function () require('fzf-lua').grep_curbuf() end, desc = 'fzf grep_curbuf' }
+maps.n['zlcb'] = { function () require('fzf-lua').grep_lcurbuf() end, desc = 'fzf grep_lcurbuf' }
+maps.n['zlg'] = { function () require('fzf-lua').live_grep() end, desc = 'fzf live_grep' }
+maps.n['zlgr'] = { function () require('fzf-lua').live_grep_resume() end, desc = 'fzf live_grep_resume' }
+maps.n['zlgg'] = { function () require('fzf-lua').live_grep_glob() end, desc = 'fzf live_grep_glob' }
+maps.n['zlgn'] = { function () require('fzf-lua').live_grep_glob() end, desc = 'fzf live_grep_native' }
+maps.n['ztag'] = { function () require('fzf-lua').tags() end, desc = 'fzf tags' }
+maps.n['zbtag'] = { function () require('fzf-lua').btags() end, desc = 'fzf btags' }
+maps.n['zbtg'] = { function () require('fzf-lua').tags_grep() end, desc = 'fzf tags_grep' }
+maps.n['zbtgcw'] = { function () require('fzf-lua').tags_grep_cword() end, desc = 'fzf tags_grep_cword' }
+maps.n['ztgcw'] = { function () require('fzf-lua').tags_grep_cword() end, desc = 'fzf tags_grep_cword' }
+maps.n['ztgCW'] = { function () require('fzf-lua').tags_grep_cWORD() end, desc = 'fzf tags_grep_cWORD' }
+maps.n['ztgv'] = { function () require('fzf-lua').tags_grep_visual() end, desc = 'fzf tags_grep_visual' }
+maps.n['ztlg'] = { function () require('fzf-lua').tags_grep_visual() end, desc = 'fzf tags_live_grep' }
+maps.n['zgls'] = { function () require('fzf-lua').git_files() end, desc = 'fzf git_files' }
+maps.n['zgs'] = { function () require('fzf-lua').git_status() end, desc = 'fzf git_files' }
+maps.n['zgc'] = { function () require('fzf-lua').git_commits() end, desc = 'fzf git_commits' }
+maps.n['zgbc'] = { function () require('fzf-lua').git_bcommits() end, desc = 'fzf git_bcommits' }
+maps.n['zgb'] = { function () require('fzf-lua').git_branches() end, desc = 'fzf git_branches' }
+maps.n['zgst'] = { function () require('fzf-lua').git_stash() end, desc = 'fzf git_stash' }
+maps.n['zr'] = { function () require('fzf-lua').resume() end, desc = 'fzf resume' }
+maps.n['zbi'] = { function () require('fzf-lua').builtin() end, desc = 'fzf builtin' }
+maps.n['zht'] = { function () require('fzf-lua').help_tags() end, desc = 'fzf help_tags' }
+maps.n['zm'] = { function () require('fzf-lua').man_pages() end, desc = 'fzf man_pages' }
+maps.n['zc'] = { function () require('fzf-lua').colorschemes() end, desc = 'fzf colorschemes' }
+maps.n['zh'] = { function () require('fzf-lua').highlights() end, desc = 'fzf highlights' }
+maps.n['zcmd'] = { function () require('fzf-lua').commands() end, desc = 'fzf commands' }
+maps.n['zs'] = { function () require('fzf-lua').search_history() end, desc = 'fzf search_history' }
+maps.n['zch'] = { function () require('fzf-lua').changes() end, desc = 'fzf changes' }
+maps.n['zkey'] = { function () require('fzf-lua').keymaps() end, desc = 'fzf keymaps' }
+
+-- harpoon
+maps.n['<leader>ha'] = { function () require('harpoon.mark').add_file() end, desc = 'harpoon add_file' }
+maps.n['<leader>hm'] = { function () require('harpoon.ui').toggle_quick_menu() end, desc = 'harpoon toggle_quick_menu' }
+maps.n['<leader>ho'] = { function () require('harpoon.ui').nav_prev() end, desc = 'harpoon nav_prev' }
+maps.n['<leader>hi'] = { function () require('harpoon.ui').nav_next() end, desc = 'harpoon nav_next' }
 
 astronvim.set_mappings(astronvim.user_plugin_opts("mappings", maps))
